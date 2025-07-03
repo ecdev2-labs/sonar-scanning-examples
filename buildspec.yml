@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  secrets-manager:
+    SONAR_TOKEN: "sonarcloud-token:sonartoken"
+
 phases:
   install:
     runtime-versions:
@@ -8,7 +12,6 @@ phases:
       - echo Installing SonarScanner CLI...
       - curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
       - unzip sonar-scanner.zip
-      - ls -l
       - mv sonar-scanner-5.0.1.3006-linux sonar-scanner
       - export PATH=$PATH:$(pwd)/sonar-scanner/bin
       - echo PATH is $PATH
@@ -19,7 +22,3 @@ phases:
     commands:
       - echo Running SonarCloud analysis...
       - sonar-scanner -Dsonar.login=$SONAR_TOKEN
-
-env:
-  secrets-manager:
-    SONAR_TOKEN: sonarcloud-token
