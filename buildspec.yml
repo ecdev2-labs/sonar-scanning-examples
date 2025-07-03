@@ -10,6 +10,9 @@ phases:
       - unzip sonar-scanner.zip
       - mv sonar-scanner-* sonar-scanner
       - export PATH=$PATH:$(pwd)/sonar-scanner/bin
+      - echo PATH is $PATH
+      - which sonar-scanner
+      - sonar-scanner --version
 
   build:
     commands:
