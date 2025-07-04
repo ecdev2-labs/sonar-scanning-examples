@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   secrets-manager:
-    SONAR_TOKEN: sonarcloud-token  # 'sonarcloud-token' is the secret name you stored in Secrets Manager
+    SONAR_TOKEN: sonarcloud-token
 
 phases:
   install:
@@ -12,9 +12,8 @@ phases:
       - echo Installing SonarScanner CLI...
       - curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
       - unzip sonar-scanner.zip
-      - mv sonar-scanner-5.0.1.3006-linux sonar-scanner
-      - chmod +x sonar-scanner/bin/sonar-scanner
-      - export PATH=$PATH:$(pwd)/sonar-scanner/bin
+      - chmod +x sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
+      - export PATH=$PATH:$(pwd)/sonar-scanner-5.0.1.3006-linux/bin
       - echo "PATH is $PATH"
       - which sonar-scanner
 
