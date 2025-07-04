@@ -23,7 +23,7 @@ phases:
     commands:
        - echo Compiling Java code
        - mkdir -p target/classes
-       - javac -d target/classes $(find . -name "*.java")
+       - javac -d target/classes $(find . -name "*.java") || { echo "Java compilation failed"; exit 1; }
        - echo Running SonarScanner
        - echo Running SonarCloud analysis...
        - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=ecdev2-labs -Dsonar.projectKey=ecdev2-labs_sonar-scanning-examples -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io
