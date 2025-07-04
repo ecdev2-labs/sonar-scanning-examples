@@ -3,6 +3,9 @@ version: 0.2
 env:
   secrets-manager:
     SONAR_TOKEN: sonarcloud-token
+  variables:
+    SONAR_SCANNER_HOME: "./sonar-scanner"
+    PATH: "$PATH:./sonar-scanner/bin"
 
 phases:
   install:
@@ -12,10 +15,8 @@ phases:
       - echo Installing SonarScanner CLI...
       - curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
       - unzip sonar-scanner.zip
-      - ls -l  # Optional: View folder contents
       - mv sonar-scanner-5.0.1.3006-linux sonar-scanner
-      - chmod +x sonar-scanner/bin/sonar-scanner  # Make sure it's executable
-      - export PATH=$PATH:$(pwd)/sonar-scanner/bin
+      - chmod +x sonar-scanner/bin/sonar-scanner
       - echo "PATH is $PATH"
       - ls sonar-scanner/bin
       - which sonar-scanner
