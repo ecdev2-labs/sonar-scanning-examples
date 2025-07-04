@@ -17,7 +17,12 @@ phases:
       - echo "PATH is $PATH"
       - which sonar-scanner
 
-  build:
+   build:
     commands:
       - echo Running SonarCloud analysis...
-      - sonar-scanner -Dsonar.login=$SONAR_TOKEN
+      - sonar-scanner \
+          -Dsonar.login=$SONAR_TOKEN \
+          -Dsonar.organization=ecdev2-labs \
+          -Dsonar.projectKey=ecdev2-labs_sonar-scanning-examples \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=https://sonarcloud.io
